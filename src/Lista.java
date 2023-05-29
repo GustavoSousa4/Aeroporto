@@ -45,10 +45,10 @@ public class Lista<X> {
             Class<?> classe = x.getClass();
             Method metodo = classe.getMethod("clone");
             ret = (X) metodo.invoke(x);
-        } 
-        catch (NoSuchMethodException erro) {}
-        catch (IllegalAccessException erro) {}
-        catch (InvocationTargetException erro) {}
+        } catch (NoSuchMethodException erro) {
+        } catch (IllegalAccessException erro) {
+        } catch (InvocationTargetException erro) {
+        }
 
         return ret;
     }
@@ -79,8 +79,7 @@ public class Lista<X> {
         else
             inserir = i;
 
-        if (this.ultimo == null)
-        {
+        if (this.ultimo == null) {
             this.ultimo = new No(inserir);
             this.primeiro = this.ultimo;
         } else {
@@ -100,8 +99,10 @@ public class Lista<X> {
     public Lista<X> getReverse() throws Exception {
         Lista<X> listaSimplesDesordenada = new Lista<>();
         for (No atual = this.primeiro; atual != null; atual = atual.getProx())
-            try {listaSimplesDesordenada.guardeUmItemNoInicio(atual.getInfo());}
-            catch (Exception e) {}
+            try {
+                listaSimplesDesordenada.guardeUmItemNoInicio(atual.getInfo());
+            } catch (Exception e) {
+            }
         return listaSimplesDesordenada;
     }
 
@@ -131,8 +132,7 @@ public class Lista<X> {
         if (this.primeiro == null)
             throw new Exception("Nada a remover");
 
-        if (this.primeiro == this.ultimo) 
-        {
+        if (this.primeiro == this.ultimo) {
             this.primeiro = this.ultimo = null;
             return;
         }
@@ -265,7 +265,7 @@ public class Lista<X> {
 
         boolean removeu = false;
 
-        for (;;){
+        for (;;) {
             if (this.primeiro == null)
                 break;
 
@@ -329,11 +329,14 @@ public class Lista<X> {
     }
 
     public boolean equals(Object obj) {
-        if (this == obj) return true;
+        if (this == obj)
+            return true;
 
-        if (obj == null) return false;
+        if (obj == null)
+            return false;
 
-        if (this.getClass() != obj.getClass()) return false;
+        if (this.getClass() != obj.getClass())
+            return false;
 
         Lista<X> lista = (Lista<X>) obj;
 
@@ -341,7 +344,8 @@ public class Lista<X> {
         No atualLista = lista.primeiro;
 
         while (atualThis != null && atualLista != null) {
-            if (!atualThis.getInfo().equals(atualLista.getInfo())) return false;
+            if (!atualThis.getInfo().equals(atualLista.getInfo()))
+                return false;
             atualThis = atualThis.getProx();
             atualLista = atualLista.getProx();
         }
@@ -362,7 +366,8 @@ public class Lista<X> {
         for (No atual = this.primeiro; atual != null; atual = atual.getProx())
             ret = PRIMO * ret + atual.getInfo().hashCode();
 
-        if (ret < 0) ret = -ret;
+        if (ret < 0)
+            ret = -ret;
         return ret;
     }
 
@@ -386,14 +391,5 @@ public class Lista<X> {
         }
 
         this.ultimo = atualDoThis;
-    }
-
-    public Object clone() {
-        Lista<X> ret = null;
-
-        try {ret = new Lista(this);} 
-        catch (Exception erro) {}
-
-        return ret;
     }
 }
