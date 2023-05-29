@@ -84,4 +84,21 @@ public class Aeroporto {
             return false;
         return true;
     }
+
+    public Aeroporto(Aeroporto modelo) throws Exception {
+        if (modelo == null)
+            throw new Exception("Modelo ausente");
+        this.cidade = modelo.cidade;
+        this.sigla = modelo.sigla;
+        this.cod = modelo.cod;
+    }
+
+    public Object clone() {
+        Aeroporto ret = null;
+        try {
+            ret = new Aeroporto(this);
+        } catch (Exception erro) {
+        }
+        return ret;
+    }
 }
