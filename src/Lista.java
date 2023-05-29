@@ -392,4 +392,15 @@ public class Lista<X> {
 
         this.ultimo = atualDoThis;
     }
+
+    public Object clone() {
+        Lista<X> ret = null;
+
+        try {
+            ret = new Lista(this);
+        } catch (Exception erro) {
+        }
+
+        return ret;
+    }
 }
