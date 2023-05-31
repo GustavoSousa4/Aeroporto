@@ -307,6 +307,18 @@ public class Lista<X> {
             throw new Exception("Informacao inexistente");
     }
 
+    public int indexOf(X value) throws Exception {
+        if(value == null) throw new Exception();
+
+        int count = 0;
+        for(No current = this.primeiro; current != null; current = current.getProx()) {
+            if(current.getInfo().equals(value))
+                return count;
+            count++;
+        }
+        return -1;
+    }
+
     public boolean isVazia() {
         return this.primeiro == null;
     }

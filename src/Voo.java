@@ -1,8 +1,9 @@
 public class Voo {
-    private int codAeroporto, codVoo;
+    private int codAeroporto;
+    private String codVoo;
 
-    public Voo(int codAeroporto, int codVoo) throws Exception {
-        if (codAeroporto <= 0 || codVoo <= 0)
+    public Voo(int codAeroporto, String codVoo) throws Exception {
+        if (codAeroporto <= 0 || codVoo == null)
             throw new Exception("Valores não podem ser menores ou iguais a zero");
         this.codAeroporto = codAeroporto;
         this.codVoo = codVoo;
@@ -18,12 +19,12 @@ public class Voo {
         this.codAeroporto = codAeroporto;
     }
 
-    public int getCodVoo() {
+    public String getCodVoo() {
         return codVoo;
     }
 
-    public void setCodVoo(int codVoo) throws Exception {
-        if (codVoo <= 0)
+    public void setCodVoo(String codVoo) throws Exception {
+        if (codVoo == null)
             throw new Exception("Valor não pode ser menor ou igual a zero");
         this.codVoo = codVoo;
     }
@@ -54,7 +55,7 @@ public class Voo {
         Voo voo = (Voo) obj;
         if (!Integer.valueOf(this.codAeroporto).equals(voo.codAeroporto))
             return false;
-        if (!Integer.valueOf(this.codVoo).equals(voo.codVoo))
+        if (!this.codVoo.equals(voo.codVoo))
             return false;
         return true;
     }
