@@ -6,6 +6,7 @@ public class Aeroportos {
         this.listaAeroporto.guardeUmItemNoFinal(aero);;
     }
     public Aeroportos(){}
+    
     public Lista<Aeroporto> getListaAeroporto() {
         return this.listaAeroporto;
     }
@@ -16,7 +17,7 @@ public class Aeroportos {
     }
     public void guardeAeroporto(Aeroporto aero)throws Exception{
         if(aero == null) throw new Exception("Aeroporto não pode ser vazio");
-        listaAeroporto.guardeUmItemNoInicio(aero);
+        this.listaAeroporto.guardeUmItemNoFinal(aero);
 
     }
 

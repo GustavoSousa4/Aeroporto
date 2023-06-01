@@ -154,6 +154,30 @@ public class Lista<X> {
         this.ultimo = atual;
     }
 
+    public void removaItemNoIndex(int index)throws Exception{
+        if(index < 0) throw new Exception("Index inválido");
+        No anterior = null, atual = this.primeiro, proximo = atual.getProx();
+
+        for(int i = 0; i < index; i++) {
+            anterior = atual;
+            atual = proximo;
+            proximo = atual.getProx();
+        }
+        anterior.setProx(proximo);
+        atual = null;
+
+    }
+    public void removaInfo(X info)throws Exception{
+        if(info == null) throw new Exception("Infomação vazia");
+        No anterior = null, atual = this.primeiro, proximo = atual.getProx();
+        while(!atual.getInfo().equals(info)){
+            anterior = atual;
+            atual = proximo;
+            proximo = atual.getProx();
+        }
+        anterior.setProx(proximo);
+        atual = null;
+    }
     public int getQuantidade() {
         No atual = this.primeiro;
         int ret = 0;

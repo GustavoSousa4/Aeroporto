@@ -15,12 +15,16 @@ public class Gerenciador{
                 Aeroportos aeroportos = new Aeroportos(aeroporto);
             }
             catch(Exception e){System.err.println(e.getMessage());}
-        }
+    }
+    public void DeletarAeroporto(){
+        System.out.println("Digite a sigla do aeroporto que deseja excluir [***]");
+        this.sigla = Teclado.getUmString();
+    }
     public void SelecionarAeroporto(){
         try{
             Aeroportos aeroportos = new Aeroportos();
             aeroportos.getListaAeroporto().toString();
         }
         catch(Exception e){System.err.println(e.getMessage());}
-    }
+    } 
 }

@@ -5,22 +5,26 @@ public class Aeroporto {
     
     public Aeroporto(String cidade, String sigla, int cod) throws Exception {
         if (cidade == null)
-        throw new Exception("Cidade não pode ser vazio");
+            throw new Exception("Cidade não pode ser vazio");
         if (sigla == null)
-        throw new Exception("Sigla não pode ser vazio");
+            throw new Exception("Sigla não pode ser vazio");
+        if(sigla.length() > 3)
+            throw new Exception("Sigla não pode ser maior do que três letras");
         if(cod < 0)
-        throw new Exception("Código não pode ser negativo");    
+            throw new Exception("Código não pode ser negativo");    
         this.cidade = cidade;
         this.sigla = sigla;
         this.cod=cod;
     }
     public Aeroporto(String cidade, String sigla, Lista<Voo> listaVoo) throws Exception {
         if (cidade == null)
-        throw new Exception("Cidade não pode ser vazio");
+            throw new Exception("Cidade não pode ser vazio");
         if (sigla == null)
-        throw new Exception("Sigla não pode ser vazio");
+            throw new Exception("Sigla não pode ser vazio");
+        if(sigla.length() > 3)
+            throw new Exception("Sigla não pode ser maior do que três letras");
         if(listaVoo.equals(null))
-        throw new Exception("Lista não pode ser nula");
+            throw new Exception("Lista não pode ser nula");
         this.cidade = cidade;
         this.sigla = sigla;
         this.listaVoo = new Lista<>();
