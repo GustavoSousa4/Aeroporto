@@ -1,18 +1,23 @@
 public class Aeroportos {
-    private Lista<Aeroporto> listaAeroporto;
-
+    private Lista<Aeroporto> listaAeroporto = new Lista<>();
     
-    public Aeroportos(Lista<Aeroporto> listaAeroporto)throws Exception {
-        if(listaAeroporto.equals(null)) throw new Exception("Objeto não pode ser nulo");
-        this.listaAeroporto = listaAeroporto;
+    public Aeroportos(Aeroporto aero)throws Exception {
+        if(aero==null) throw new Exception("Objeto não pode ser nulo");
+        this.listaAeroporto.guardeUmItemNoFinal(aero);;
     }
+    public Aeroportos(){}
     public Lista<Aeroporto> getListaAeroporto() {
-        return listaAeroporto;
+        return this.listaAeroporto;
     }
 
     public void setListaAeroporto(Lista<Aeroporto> listaAeroporto)throws Exception {
-        if(listaAeroporto.equals(null)) throw new Exception("Objeto não pode ser nulo");
+        if(listaAeroporto==null) throw new Exception("Objeto não pode ser nulo");
         this.listaAeroporto = listaAeroporto;
+    }
+    public void guardeAeroporto(Aeroporto aero)throws Exception{
+        if(aero == null) throw new Exception("Aeroporto não pode ser vazio");
+        listaAeroporto.guardeUmItemNoInicio(aero);
+
     }
 
     @Override
