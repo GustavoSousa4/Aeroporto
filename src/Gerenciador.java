@@ -19,6 +19,7 @@ public class Gerenciador{
         String sigla;
         System.out.println("Digite a sigla do aeroporto que deseja excluir [***]");
         sigla = Teclado.getUmString();
+        
     }
     public static void SelecionarAeroporto(){
         try{

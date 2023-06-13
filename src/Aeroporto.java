@@ -1,6 +1,6 @@
 public class Aeroporto {
-    private String cidade, sigla;
-    private Lista<Voo> listaVoo;
+    private static String cidade, sigla;
+    private static Lista<Voo> listaVoo;
     
     public Aeroporto(String cidade, String sigla) throws Exception {
         if (cidade == null)
@@ -26,43 +26,48 @@ public class Aeroporto {
         this.listaVoo = new Lista<>();
     }
     
-    public String getCidade() {
-        return this.cidade;
+    public static String getCidade() {
+        return cidade;
     }
     
-    public void setCidade(String cidade) throws Exception {
+    public static void setCidade(String cidade) throws Exception {
         if (cidade == null)
         throw new Exception("Para alterar, o valor não pode ser nulo");
-        this.cidade = cidade;
+        cidade = cidade;
     }
     
-    public String getSigla() {
-        return this.sigla;
+    public static String getSigla() {
+        return sigla;
     }
     
-    public void setSigla(String sigla) throws Exception {
+    public static void setSigla(String sigla) throws Exception {
         if (sigla == null)
         throw new Exception("Para alterar, o valor não pode ser nulo");
-        this.sigla = sigla;
+        sigla = sigla;
     }
 
-    public void guardeUmVoo(Voo voo)throws Exception{
+    public static void guardeUmVoo(Voo voo)throws Exception{
         if(voo.equals(null)) throw new Exception("Voo não pode ser nulo");
         listaVoo.guardeUmItemNoFinal(voo);
     }
-    public int getVooIndex(Voo voo)throws Exception{
+    public static void removaVoo(Voo voo)throws Exception{
+        if(sigla.equals(null)) throw new Exception("Sigla não pode ser nulo");
+        listaVoo.removaItemIndicado(voo);
+        throw new Exception("Voo não encontrado");
+    }
+    public static int getVooIndex(Voo voo)throws Exception{
         if(voo.equals(null)) throw new Exception("Voo não pode ser nulo");
-        return this.listaVoo.indexOf(voo);
+        return listaVoo.indexOf(voo);
     }
     
-    public Voo getVooInIndex(int i)throws Exception{
+    public static Voo getVooInIndex(int i)throws Exception{
         if(i < 0) throw new Exception("Index inválido");
         return listaVoo.getIezima(i);
     }
 
-    public void removeVoo(Voo voo)throws Exception{
+    public static void removeVoo(Voo voo)throws Exception{
         if(voo == null) throw new Exception("Voo não pode ser nulo");
-        this.listaVoo.removaItemIndicado(voo);
+        listaVoo.removaInfo(voo);
     }
 
     @Override
