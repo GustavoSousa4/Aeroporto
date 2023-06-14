@@ -1,80 +1,92 @@
 public class Aeroporto {
-    private static String cidade, sigla;
-    private static Lista<Voo> listaVoo;
-    
+    private String cidade, sigla;
+    private Lista<Voo> listaVoo;
+
     public Aeroporto(String cidade, String sigla) throws Exception {
         if (cidade == null)
             throw new Exception("Cidade não pode ser vazio");
         if (sigla == null)
             throw new Exception("Sigla não pode ser vazio");
-        if(sigla.length() > 3)
-            throw new Exception("Sigla não pode ser maior do que três letras");   
+        if (sigla.length() > 3)
+            throw new Exception("Sigla não pode ser maior do que três letras");
         this.cidade = cidade;
         this.sigla = sigla;
+        this.listaVoo = new Lista<Voo>();
     }
+
     public Aeroporto(String cidade, String sigla, Lista<Voo> listaVoo) throws Exception {
         if (cidade == null)
             throw new Exception("Cidade não pode ser vazio");
         if (sigla == null)
             throw new Exception("Sigla não pode ser vazio");
-        if(sigla.length() != 3)
+        if (sigla.length() != 3)
             throw new Exception("Sigla não pode ser maior do que três letras");
-        if(listaVoo.equals(null))
+        if (listaVoo.equals(null))
             throw new Exception("Lista não pode ser nula");
         this.cidade = cidade;
         this.sigla = sigla.toUpperCase();
         this.listaVoo = new Lista<>();
     }
-    
-    public static String getCidade() {
+
+    public String getCidade() {
         return cidade;
     }
-    
-    public static void setCidade(String cidade) throws Exception {
+
+    public void setCidade(String cidade) throws Exception {
         if (cidade == null)
-        throw new Exception("Para alterar, o valor não pode ser nulo");
-        cidade = cidade;
-    }
-    
-    public static String getSigla() {
-        return sigla;
-    }
-    
-    public static void setSigla(String sigla) throws Exception {
-        if (sigla == null)
-        throw new Exception("Para alterar, o valor não pode ser nulo");
-        sigla = sigla;
+            throw new Exception("Para alterar, o valor não pode ser nulo");
+        this.cidade = cidade;
     }
 
-    public static void guardeUmVoo(Voo voo)throws Exception{
-        if(voo.equals(null)) throw new Exception("Voo não pode ser nulo");
-        listaVoo.guardeUmItemNoFinal(voo);
+    public String getSigla() {
+        return sigla;
     }
-    public static void removaVoo(Voo voo)throws Exception{
-        if(sigla.equals(null)) throw new Exception("Sigla não pode ser nulo");
+
+    public void setSigla(String sigla) throws Exception {
+        if (sigla == null)
+            throw new Exception("Para alterar, o valor não pode ser nulo");
+        this.sigla = sigla;
+    }
+
+    public Lista<Voo> getListaDeVoos() {
+        return this.listaVoo;
+    }
+
+    public void guardeUmVoo(Voo voo) throws Exception {
+        if (voo.equals(null))
+            throw new Exception("Voo não pode ser nulo");
+        this.listaVoo.guardeUmItemNoFinal(voo);
+    }
+
+    public void removaVoo(Voo voo) throws Exception {
+        if (sigla.equals(null))
+            throw new Exception("Sigla não pode ser nulo");
         listaVoo.removaItemIndicado(voo);
         throw new Exception("Voo não encontrado");
     }
-    public static int getVooIndex(Voo voo)throws Exception{
-        if(voo.equals(null)) throw new Exception("Voo não pode ser nulo");
+
+    public int getVooIndex(Voo voo) throws Exception {
+        if (voo.equals(null))
+            throw new Exception("Voo não pode ser nulo");
         return listaVoo.indexOf(voo);
     }
-    
-    public static Voo getVooInIndex(int i)throws Exception{
-        if(i < 0) throw new Exception("Index inválido");
+
+    public Voo getVooInIndex(int i) throws Exception {
+        if (i < 0)
+            throw new Exception("Index inválido");
         return listaVoo.getIezima(i);
     }
 
-    public static void removeVoo(Voo voo)throws Exception{
-        if(voo == null) throw new Exception("Voo não pode ser nulo");
+    public void removeVoo(Voo voo) throws Exception {
+        if (voo == null)
+            throw new Exception("Voo não pode ser nulo");
         listaVoo.removaInfo(voo);
     }
 
     @Override
     public String toString() {
         String ret;
-        ret = "Cidade: " + this.cidade +
-                "\n Sigla Aeroporto: " + this.sigla;
+        ret = "Cidade: " + this.cidade + "\nSigla Aeroporto: " + this.sigla + "\n";
 
         return ret;
     }

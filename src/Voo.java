@@ -1,20 +1,21 @@
 public class Voo {
-    private int codAeroporto;
-    private String codVoo;
+    private String codVoo, codAeroporto;;
 
-    public Voo(int codAeroporto, String codVoo) throws Exception {
-        if (codAeroporto <= 0 || codVoo == null)
-            throw new Exception("Valores não podem ser menores ou iguais a zero");
+    public Voo(String codAeroporto, String codVoo) throws Exception {
+        if (codVoo == null || codVoo.length() != 3)
+            throw new Exception("Valores não podem ser menores ou iguais a zero ou diferentes de três");
+        if (codAeroporto == null || codVoo.length() != 3)
+            throw new Exception("Valores não podem ser menores ou iguais a zero ou diferentes de três");
         this.codAeroporto = codAeroporto;
         this.codVoo = codVoo;
     }
 
-    public int getCodAeroporto() {
+    public String getCodAeroporto() {
         return codAeroporto;
     }
 
-    public void setCodAeroporto(int codAeroporto) throws Exception {
-        if (codAeroporto <= 0)
+    public void setCodAeroporto(String codAeroporto) throws Exception {
+        if (codAeroporto == null || codAeroporto.length() != 3)
             throw new Exception("Valor não pode ser menor ou igual a zero");
         this.codAeroporto = codAeroporto;
     }
@@ -31,7 +32,7 @@ public class Voo {
 
     @Override
     public String toString() {
-        return "Código de Aeroporto: " + this.codAeroporto + "\nCódigo de voo: " + this.codVoo;
+        return this.codAeroporto + " " + this.codVoo;
     }
 
     @Override

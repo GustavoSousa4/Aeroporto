@@ -154,11 +154,12 @@ public class Lista<X> {
         this.ultimo = atual;
     }
 
-    public void removaItemNoIndex(int index)throws Exception{
-        if(index < 0) throw new Exception("Index inválido");
+    public void removaItemNoIndex(int index) throws Exception {
+        if (index < 0)
+            throw new Exception("Index inválido");
         No anterior = null, atual = this.primeiro, proximo = atual.getProx();
 
-        for(int i = 0; i < index; i++) {
+        for (int i = 0; i < index; i++) {
             anterior = atual;
             atual = proximo;
             proximo = atual.getProx();
@@ -167,10 +168,12 @@ public class Lista<X> {
         atual = null;
 
     }
-    public void removaInfo(X info)throws Exception{
-        if(info == null) throw new Exception("Infomação vazia");
+
+    public void removaInfo(X info) throws Exception {
+        if (info == null)
+            throw new Exception("Infomação vazia");
         No anterior = null, atual = this.primeiro, proximo = atual.getProx();
-        while(!atual.getInfo().equals(info)){
+        while (!atual.getInfo().equals(info)) {
             anterior = atual;
             atual = proximo;
             proximo = atual.getProx();
@@ -178,6 +181,7 @@ public class Lista<X> {
         anterior.setProx(proximo);
         atual = null;
     }
+
     public int getQuantidade() {
         No atual = this.primeiro;
         int ret = 0;
@@ -332,11 +336,12 @@ public class Lista<X> {
     }
 
     public int indexOf(X value) throws Exception {
-        if(value == null) throw new Exception();
+        if (value == null)
+            throw new Exception();
 
         int count = 0;
-        for(No current = this.primeiro; current != null; current = current.getProx()) {
-            if(current.getInfo().equals(value))
+        for (No current = this.primeiro; current != null; current = current.getProx()) {
+            if (current.getInfo().equals(value))
                 return count;
             count++;
         }
@@ -348,20 +353,20 @@ public class Lista<X> {
     }
 
     public String toString() {
-        String ret = "[";
+        String ret = "[ ";
 
         No atual = this.primeiro;
 
         while (atual != null) {
-            ret = ret + atual.getInfo();
+            ret += atual.getInfo();
 
             if (atual != this.ultimo)
-                ret = ret + ",";
+                ret = ret + " -> ";
 
             atual = atual.getProx();
         }
 
-        return ret + "]";
+        return ret + " ]";
     }
 
     public boolean equals(Object obj) {
