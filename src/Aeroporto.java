@@ -77,16 +77,30 @@ public class Aeroporto {
         return listaVoo.getIezima(i);
     }
 
-    public void removeVoo(Voo voo) throws Exception {
-        if (voo == null)
+    public int indexOfCodVoo(String cod) {
+        int count = 0;
+        for(;;)
+            try {
+                if(listaVoo.getIezima(count).getCodVoo().equals(cod))
+                    return count;
+                count++;
+                continue;
+            } catch(Exception e) {
+                break;
+            }
+        return -1;
+    }
+
+    public void removeVoo(int index) throws Exception {
+        if (index < 0)
             throw new Exception("Voo não pode ser nulo");
-        listaVoo.removaInfo(voo);
+        listaVoo.removaItemNoIndex(index);
     }
 
     @Override
     public String toString() {
         String ret;
-        ret = "Cidade: " + this.cidade + "\nSigla Aeroporto: " + this.sigla + "\n";
+        ret = "Cidade: " + this.cidade + " Sigla Aeroporto: " + this.sigla + " ";
 
         return ret;
     }
@@ -114,6 +128,8 @@ public class Aeroporto {
             return false;
         if (!this.sigla.equals(aero.sigla))
             return false;
+        if(!this.listaVoo.equals(aero.listaVoo))
+            return false;
         return true;
     }
 
@@ -122,6 +138,7 @@ public class Aeroporto {
             throw new Exception("Modelo ausente");
         this.cidade = modelo.cidade;
         this.sigla = modelo.sigla;
+        this.listaVoo = modelo.listaVoo;
     }
 
     public Object clone() {

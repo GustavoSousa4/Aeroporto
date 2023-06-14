@@ -1,4 +1,3 @@
-
 public class Gerenciador {
     private static Lista<Aeroporto> listaAeros = new Lista<Aeroporto>();
 
@@ -8,7 +7,7 @@ public class Gerenciador {
             System.out.println("Digite a  cidade em que fica o Aeroporto: ");
             cidade = Teclado.getUmString();
             System.out.println("Digite a sigla do Aeroporto [***]");
-            sigla = Teclado.getUmString();
+            sigla = Teclado.getUmString().toUpperCase();
             if (siglaJaExiste(sigla)) {
                 System.out.println("Sigla já existente. O aeroporto não pode ser criado com esta sigla");
                 criarAeropoto();
@@ -17,7 +16,7 @@ public class Gerenciador {
             System.out.println("Aeroporto criado com sucesso");
             System.out.println("Pressione enter");
             Teclado.getUmString();
-            menu();
+           menu();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -30,7 +29,7 @@ public class Gerenciador {
         Aeroporto escolhido = listaAeros.getIezima(Teclado.getUmInt() - 1);
 
         System.out.println("Qual será o aeroporto de destino ?");
-        destino = Teclado.getUmString();
+        destino = Teclado.getUmString().toUpperCase();
         System.out.println("Qual o número deste voo? ");
         codVoo = Teclado.getUmString();
         if (!siglaJaExiste(destino)) {
@@ -52,13 +51,22 @@ public class Gerenciador {
 
     public static void excluirUmVoo() throws Exception {
         listarAeroportos();
-        System.out.println("Em qual aeroporto deseja fazer a adição?: ");
+        System.out.println("Em qual aeroporto deseja fazer a exclusãoa?: ");
         Aeroporto escolhido = listaAeros.getIezima(Teclado.getUmInt() - 1);
+        if(escolhido.getVooInIndex(0).equals(null)){
+            System.out.println("Este aeroporto esta vazio, escolha outro aeroporto para excluir um voo");
+            excluirUmVoo();
+        }
         String codVoo, sigla;
         System.out.println("Digite o a sigla de destino do voo que deseja excluir: ");
-        sigla = Teclado.getUmString();
+        sigla = Teclado.getUmString().toUpperCase();
         System.out.println("Digite o codigo do voo que deseja excluir: ");
         codVoo = Teclado.getUmString();
+        escolhido.removeVoo(escolhido.indexOfCodVoo(codVoo));
+
+        System.out.println("Voo excluido com sucesso. Pressione Enter para retornar ao menu");
+        Teclado.getUmString();
+        menu();
     }
 
     public static void listarVoosDeUmAeroporto() throws Exception {
@@ -69,16 +77,26 @@ public class Gerenciador {
     }
 
     public static void listarTodosOsVoos() throws Exception {
+        if(listaAeros.isVazia()){
+            System.out.println("Lista vazia. Pressione Enter para voltar ao menu");
+            Teclado.getUmString();
+            menu();
+        }
         Aeroporto atual;
         for (int i = 0; i < listaAeros.getTamanhoLista(); i++) {
             atual = listaAeros.getIezima(i);
-            System.out.println((i + 1) + " - " + atual + "Lista de voos: " + atual.getListaDeVoos());
+            System.out.println("("+(i + 1) + " - " + atual + "Lista de voos: " + atual.getListaDeVoos()+")");
         }
+        System.out.println("Pressione Enter para voltar ao menu");
+        Teclado.getUmString();
+        menu();
     }
 
     public static void listarAeroportos() throws Exception {
-        for (int i = 0; i < listaAeros.getTamanhoLista(); i++)
+        for (int i = 0; i < listaAeros.getTamanhoLista(); i++){
             System.out.println((i + 1) + " - " + listaAeros.getIezima(i));
+        }
+       
     }
 
     public static boolean siglaJaExiste(String sigla) throws Exception {
@@ -87,6 +105,36 @@ public class Gerenciador {
                 return true;
         }
         return false;
+    }
+    public static void adicionarTodos()throws Exception{
+
+            Aeroporto brasilia = new Aeroporto("Brasilia", "BSB");
+            brasilia.guardeUmVoo(new Voo("SSA", "107"));
+            
+            Aeroporto bh = new Aeroporto("Belo Horizonte", "CNF");
+            bh.guardeUmVoo(new Voo("SSA", "214"));
+            bh.guardeUmVoo(new Voo("GIG", "555"));
+            bh.guardeUmVoo(new Voo("GRU", "101"));
+
+            Aeroporto rj = new Aeroporto("Rio de Janeiro", "GIG");
+            rj.guardeUmVoo(new Voo("CNF", "554"));
+            rj.guardeUmVoo(new Voo("GRU", "090"));
+
+            Aeroporto sp = new Aeroporto("São Paulo", "GRU");
+            sp.guardeUmVoo(new Voo("BSB","050"));
+            sp.guardeUmVoo(new Voo("GIG","089"));
+            sp.guardeUmVoo(new Voo("CNF","102"));
+
+            Aeroporto sa = new Aeroporto("Salvador", "SSA");
+            sa.guardeUmVoo(new Voo("CNF","215"));
+
+            listaAeros.guardeUmItemNoFinal(brasilia);
+            listaAeros.guardeUmItemNoFinal(bh);
+            listaAeros.guardeUmItemNoFinal(rj);
+            listaAeros.guardeUmItemNoFinal(sp);
+            listaAeros.guardeUmItemNoFinal(sa);
+
+
     }
 
     public static void menu() {

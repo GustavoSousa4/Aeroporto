@@ -157,16 +157,21 @@ public class Lista<X> {
     public void removaItemNoIndex(int index) throws Exception {
         if (index < 0)
             throw new Exception("Index inválido");
-        No anterior = null, atual = this.primeiro, proximo = atual.getProx();
+        
+        if (index == 0)
+            this.primeiro = this.primeiro.getProx();
+        else {
+            No anterior = null, atual = this.primeiro, proximo = atual.getProx();
 
-        for (int i = 0; i < index; i++) {
-            anterior = atual;
-            atual = proximo;
-            proximo = atual.getProx();
+            for (int i = 0; i < index; i++) {
+                anterior = atual;
+                atual = proximo;
+                proximo = atual.getProx();
+            }
+
+            anterior.setProx(proximo);
+            atual = null;
         }
-        anterior.setProx(proximo);
-        atual = null;
-
     }
 
     public void removaInfo(X info) throws Exception {

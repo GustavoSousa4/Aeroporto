@@ -1,6 +1,7 @@
 public class App {
     public static void main(String[] args) throws Exception {
         try {
+            Gerenciador.adicionarTodos();
             Gerenciador.menu();
             // // Escolhido: GTL GustavoLandia
             // // Lista de voos: [ BRL 090 -> MGL 800 ]
