@@ -52,6 +52,10 @@ public class Aeroporto {
         return this.listaVoo;
     }
 
+    /** estet método tem por objetivo armazenar um voo dentro da lista voo
+     * @param voo
+     * @throws Exception
+     */
     public void guardeUmVoo(Voo voo) throws Exception {
         if (voo.equals(null))
             throw new Exception("Voo não pode ser nulo");

@@ -6,7 +6,7 @@ public class Gerenciador {
         try {
             System.out.println("Digite a  cidade em que fica o Aeroporto: ");
             cidade = Teclado.getUmString();
-            System.out.println("Digite a sigla do Aeroporto [***]");
+            System.out.println("Digite a sigla do Aeroporto com três letra [***]");
             sigla = Teclado.getUmString().toUpperCase();
             if (siglaJaExiste(sigla)) {
                 System.out.println("Sigla já existente. O aeroporto não pode ser criado com esta sigla");
@@ -21,13 +21,13 @@ public class Gerenciador {
             System.err.println(e.getMessage());
         }
     }
-
+    
     public static void criarVoo() throws Exception {
         String destino, codVoo;
         listarAeroportos();
         System.out.println("Em qual aeroporto deseja fazer a adição?: ");
         Aeroporto escolhido = listaAeros.getIezima(Teclado.getUmInt() - 1);
-
+        
         System.out.println("Qual será o aeroporto de destino ?");
         destino = Teclado.getUmString().toUpperCase();
         System.out.println("Qual o número deste voo? ");
@@ -40,6 +40,7 @@ public class Gerenciador {
                 menu();
             }
         }
+        
         try {
             escolhido.guardeUmVoo(new Voo(destino, codVoo));
             menu();
@@ -50,9 +51,12 @@ public class Gerenciador {
     }
 
     public static void excluirUmVoo() throws Exception {
+        int dado = 0;
         listarAeroportos();
-        System.out.println("Em qual aeroporto deseja fazer a exclusãoa?: ");
-        Aeroporto escolhido = listaAeros.getIezima(Teclado.getUmInt() - 1);
+        System.out.println("Em qual aeroporto deseja fazer a exclusão? : ");
+        dado = Teclado.getUmInt();
+        Aeroporto escolhido = listaAeros.getIezima(dado - 1);
+        System.out.println("Destinos: " + escolhido.getListaDeVoos().toString());
         if(escolhido.getVooInIndex(0).equals(null)){
             System.out.println("Este aeroporto esta vazio, escolha outro aeroporto para excluir um voo");
             excluirUmVoo();
@@ -177,8 +181,8 @@ public class Gerenciador {
 
                     case "f":
                         limparTela();
-                        System.out.println("Até logo!");
-                        break;
+                        System.out.println("Até logo! 👋");
+                        System.exit(0);
                 }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
