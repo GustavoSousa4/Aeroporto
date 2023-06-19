@@ -61,9 +61,7 @@ public class Gerenciador {
             System.out.println("Este aeroporto esta vazio, escolha outro aeroporto para excluir um voo");
             excluirUmVoo();
         }
-        String codVoo, sigla;
-        System.out.println("Digite o a sigla de destino do voo que deseja excluir: ");
-        sigla = Teclado.getUmString().toUpperCase();
+        String codVoo;        
         System.out.println("Digite o codigo do voo que deseja excluir: ");
         codVoo = Teclado.getUmString();
         escolhido.removeVoo(escolhido.indexOfCodVoo(codVoo));
