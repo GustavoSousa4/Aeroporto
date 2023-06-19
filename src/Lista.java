@@ -22,7 +22,7 @@ public class Lista<X> {
         public No getProx() {
             return this.prox;
         }
-
+        @SuppressWarnings("all")
         public void setInfo(X i) {
             this.info = i;
         }
@@ -37,7 +37,7 @@ public class Lista<X> {
     public Lista() {
         this.primeiro = this.ultimo = null;
     }
-
+    @SuppressWarnings("unchecked")
     private X meuCloneDeX(X x) {
         X ret = null;
 
@@ -373,7 +373,7 @@ public class Lista<X> {
 
         return ret + " ]";
     }
-
+    @SuppressWarnings("unchecked")
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -438,7 +438,7 @@ public class Lista<X> {
 
         this.ultimo = atualDoThis;
     }
-
+    @SuppressWarnings("all")
     public Object clone() {
         Lista<X> ret = null;
 
